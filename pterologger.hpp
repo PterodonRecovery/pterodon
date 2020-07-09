@@ -1,0 +1,42 @@
+/*
+    Pterodon Recovery - Logger class
+    Copyright (C) <2020> ATGDroid <bythedroid@gmail.com>
+    
+    This file is part of Pterodon Recovery Project
+    
+    Pterodon Recovery is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    Pterodon Recovery is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with Pterodon Recovery.  If not, see <http://www.gnu.org/licenses/>.
+    
+*/
+
+#ifndef _PTERODON_LOGGER_HPP
+#define _PTERODON_LOGGER_HPP
+
+#include <string>
+
+namespace Pterodon {
+	
+class Logger
+{
+public:
+    static void RedirectStdIO(const std::string& new_log_io_path);
+    static void CopyLogs(void);
+    static void WipeLogs(void);
+    static bool Copy_Kernel_Log(const std::string& path);
+    static bool Copy_Recovery_Log(const std::string& src, const std::string& dst);
+};
+
+} // namespace Pterodon
+
+#endif // _PTERODON_LOGGER_HPP
+
