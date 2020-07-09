@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "roots.h"
+#include "fs_manager.h"
 
 #include <ctype.h>
 #include <fcntl.h>

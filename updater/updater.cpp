@@ -30,12 +30,10 @@
 #include <selinux/selinux.h>
 #include <ziparchive/zip_archive.h>
 
+#include "config.h"
 #include "edify/expr.h"
-#include "otafault/config.h"
 #include "otautil/DirUtil.h"
 #include "otautil/SysUtil.h"
-#include "otautil/cache_location.h"
-#include "otautil/error_code.h"
 #include "updater/blockimg.h"
 #include "updater/install.h"
 
@@ -43,6 +41,11 @@
 // RegisterDeviceExtensions() function, which calls all the
 // registration functions for device-specific extensions.
 #include "register.inc"
+
+// For e2fsprogs
+extern "C" {
+const char* program_name = "updater";
+}
 
 // Where in the package we expect to find the edify script to execute.
 // (Note it's "updateR-script", not the older "update-script".)

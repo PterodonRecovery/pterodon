@@ -68,7 +68,7 @@
 #include "minui/minui.h"
 #include "otautil/DirUtil.h"
 #include "otautil/error_code.h"
-#include "roots.h"
+#include "fs_manager.h"
 #include "rotate_logs.h"
 #include "screen_ui.h"
 #include "stub_ui.h"

@@ -14,13 +14,18 @@
 
 LOCAL_PATH := $(call my-dir)
 
-tune2fs_static_libraries := \
-    libext2_com_err \
-    libext2_blkid \
-    libext2_quota \
-    libext2_uuid \
-    libext2_e2p \
-    libext2fs
+ifneq ($(wildcard external/e2fsprogs/misc/tune2fs.h),)
+    tune2fs_static_libraries := \
+        libext2_com_err \
+        libext2_blkid \
+        libext2_quota \
+        libext2_uuid \
+        libext2_e2p \
+        libext2fs
+    LOCAL_CFLAGS += -DHAVE_LIBTUNE2FS
+else
+    tune2fs_static_libraries :=
+endif
 
 updater_common_static_libraries := \
     libapplypatch \
@@ -68,6 +73,10 @@ LOCAL_C_INCLUDES := \
 LOCAL_CFLAGS := \
     -Wall \
     -Werror
+
+ifeq ($(BOARD_SUPPRESS_EMMC_WIPE),true)
+    LOCAL_CFLAGS += -DSUPPRESS_EMMC_WIPE
+endif
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := \
     $(LOCAL_PATH)/include
