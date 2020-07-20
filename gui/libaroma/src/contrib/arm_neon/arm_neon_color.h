@@ -166,7 +166,7 @@ static inline void libaroma_color_copy_rgb24(
     uint16x8_t maskb = vdupq_n_u16(0x001F);
     for (i=0;i<n-left;i+=8){
       uint16x8_t psrc = vld1q_u16(src+i);
-      volatile uint8x8x3_t pdst;
+      uint8x8x3_t pdst;
       pdst.val[0] = vshrn_n_u16(vandq_u16(psrc,maskr),8);
       pdst.val[1] = vshrn_n_u16(vandq_u16(psrc,maskg),3);
       pdst.val[2] = vmovn_u16(vshlq_n_u16(vandq_u16(psrc,maskb),3));

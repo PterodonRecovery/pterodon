@@ -201,7 +201,7 @@ size_t Pterodon::Framework::get_io_blksize(int fd) {
 struct stat st;
 /* don't bother with the increase of the default value,
 * as far as i tested it 128KB seems to be fine  */
-int ret = 128*1024;
+unsigned long ret = 128*1024;
 if (fstat(fd, &st) < 0) {
 LOGW("io_blksize: Failed to fstat fd! (%s)", strerror(errno));
 return ret;
