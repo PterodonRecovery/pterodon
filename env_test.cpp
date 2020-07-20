@@ -1,5 +1,5 @@
 /*
-    Pterodon - env handler test
+    Pterodon Recovery - env handler test
     Copyright (C) <2020> ATGDroid <bythedroid@gmail.com>
 
     This file is part of Pterodon Recovery Project

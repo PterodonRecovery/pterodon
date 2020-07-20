@@ -1,5 +1,5 @@
 /*
-    Pterodon - version manager
+    Pterodon Recovery - version manager
     Copyright (C) <2020> ATGDroid <bythedroid@gmail.com>
 
     This file is part of Pterodon Recovery Project

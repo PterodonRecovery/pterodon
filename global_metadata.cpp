@@ -1,5 +1,5 @@
 /*
-    Pterodon - global storage metadata
+    Pterodon Recovery - global storage metadata
     Copyright (C) <2020> ATGDroid <bythedroid@gmail.com>
 
     This file is part of Pterodon Recovery Project

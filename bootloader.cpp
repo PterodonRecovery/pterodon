@@ -1,5 +1,5 @@
 /*
-    Pterodon - bootloader driver
+    Pterodon Recovery - bootloader driver
     Copyright (C) <2020> ATGDroid <bythedroid@gmail.com>
 
     This file is part of Pterodon Recovery Project
