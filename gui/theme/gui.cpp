@@ -1876,7 +1876,7 @@ LIBAROMA_CONTROLP about_recovery_list = libaroma_ctl_list(
        } else {
        Pterogui()->dark_mode = PTEROGUI_BLACK_BACKGROUND;	
        }
-       Pterodon::Gui::Engine::ShowDialog("<Theme changed</b>", "This settings will be applied on next boot to recovery");
+       Pterodon::Gui::Engine::ShowDialog("<b>Theme changed</b>", "This settings will be applied on next boot to recovery");
        } else if (msg.key == 510) {
        Pterodon::SettingsManager::ToggleVar("force_fahrenheit_temperature");
        Pterodon::Gui::Engine::UpdateTimeSettings();	
