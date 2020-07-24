@@ -128,6 +128,30 @@ byte LINUXFBDR_init(LIBAROMA_FBP me) {
   ioctl(mi->fb, FBIOGET_FSCREENINFO, &mi->fix); /* fix info */
   ioctl(mi->fb, FBIOGET_VSCREENINFO, &mi->var); /* var info */
   
+#ifdef LIBAROMA_FORCE_RGB_565
+    ALOGI("LINUXFBDR Forcing pixel format RGB_565");
+    mi->var.blue.offset    = 0;
+    mi->var.green.offset   = 5;
+    mi->var.red.offset     = 11;
+    mi->var.blue.length    = 5;
+    mi->var.green.length   = 6;
+    mi->var.red.length     = 5;
+    mi->var.blue.msb_right = 0;
+    mi->var.green.msb_right = 0;
+    mi->var.red.msb_right = 0;
+    mi->var.transp.offset  = 0;
+    mi->var.transp.length  = 0;
+    mi->var.bits_per_pixel = 16;
+
+    if (ioctl(mi->fb, FBIOPUT_VSCREENINFO, &mi->var) < 0)
+        ALOGE("LINUXFBDR failed to set RGB565");
+#endif
+
+#ifdef LIBAROMA_FORCE_USE_LINELENGTH
+    ALOGI("LINUXFBDR Forcing line length");
+    mi->var.xres_virtual = mi->fix.line_length / mi->var.bits_per_pixel / 8;
+#endif
+  
   /* dump info */
   LINUXFBDR_dump(mi);
   

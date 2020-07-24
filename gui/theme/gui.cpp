@@ -1418,15 +1418,14 @@ Pterodon::Gui::Core::init();
     0,
     libaroma_dp(Pterogui()->Statusbar_dp),
     libaroma_fb()->w,
-    libaroma_fb()->h-libaroma_dp(Pterogui()->Statusbar_dp));
-    //libaroma_fb()->h-libaroma_dp(48)-libaroma_dp(Pterogui()->Statusbar_dp));
+    libaroma_fb()->h-libaroma_dp(48)-libaroma_dp(Pterogui()->Statusbar_dp));
 
   Pterogui()->Statusbar_Canvas = libaroma_canvas_area(
     libaroma_fb()->canvas,
     0, 0, libaroma_fb()->w, libaroma_dp(Pterogui()->Statusbar_dp)
   );
   
-  /*
+  
   Pterogui()->NavigationBar_Canvas = libaroma_canvas_area(
     libaroma_fb()->canvas,
     0, libaroma_fb()->h-libaroma_dp(48), libaroma_fb()->w, libaroma_dp(48)
@@ -1443,7 +1442,6 @@ Pterodon::Gui::Core::init();
     Pterogui()->NavigationBar_Canvas,
     RGB(000000)
   );
-  */
   
   Pterodon::Gui::Statusbar::SetColor(0);
 
@@ -1584,7 +1582,7 @@ word checkflags =
   _ITEM(506,"Font", "font", "Choose your preffered text font");
 //  _ITEM(507,"Accent Color", "color", "Choose your preffered accent color");
 //  _ITEM(508,"Background Color", "format_paint", "Select UI background color");  
- // _CHECK(509,"Use dark mode", "check_enable_dark_mode", "theme_light_dark", "Enable dark mode through entire GUI");  
+  _CHECK(509,"Dark mode", "check_enable_dark_mode", "theme_light_dark", "Enable dark mode through entire GUI");  
   _CHECK(510,"Fahrenheit", "force_fahrenheit_temperature", "fahrenheit", "Use fahrenheit temperature instead of celsius");
   
   /* undef menu item macro */
@@ -1753,7 +1751,7 @@ LIBAROMA_CONTROLP about_recovery_list = libaroma_ctl_list(
   
   /* ITEMS */
   _TITLE(200,"ROM & SYSTEM");
-    _ITEM(ID_MENU_INSTALL,"Install ROM","system_update",NULL);
+    _ITEM(ID_MENU_INSTALL,"Install","system_update",NULL);
     _ITEM(ID_MENU_BACKUP,"Backup and Restore","restore",NULL);
     _ITEM(ID_MENU_WIPE,"Wipe","wipe",NULL);
     _ITEM(ID_MENU_USB,"USB Mode","usb","MTP");
@@ -1878,11 +1876,7 @@ LIBAROMA_CONTROLP about_recovery_list = libaroma_ctl_list(
        } else {
        Pterogui()->dark_mode = PTEROGUI_BLACK_BACKGROUND;	
        }
-       Pterodon::Gui::Engine::SetTheme(Pterogui()->Window);
-       Pterodon::Gui::Engine::SetTheme(win2);
-       libaroma_window_invalidate(Pterogui()->Window, 10);
-       libaroma_window_invalidate(win2, 10);
-       libaroma_wm_sync(0,0,libaroma_wm()->w, libaroma_wm()->h);
+       Pterodon::Gui::Engine::ShowDialog("<Theme changed</b>", "This settings will be applied on next boot to recovery");
        } else if (msg.key == 510) {
        Pterodon::SettingsManager::ToggleVar("force_fahrenheit_temperature");
        Pterodon::Gui::Engine::UpdateTimeSettings();	

@@ -96,6 +96,7 @@ settingsSavedToFile.NewVar("pterodon_vibrate_on_touch_check", "0");
 settingsSavedToFile.NewVar("pterodon_vibrate_on_button_press_check", "0");
 settingsSavedToFile.NewVar("pterodon_vibrate_on_boot_check", "0");
 settingsSavedToFile.NewVar("pterodon_vibrate_on_charging_check", "0");
+settingsSavedToFile.NewVar("check_enable_dark_mode", "1");
 libaroma_mutex_unlock(settings_locker);
 }
 

@@ -102,8 +102,12 @@ byte QCOMFB_init(LIBAROMA_FBP me){
   struct ion_allocation_data ion_alloc;
   ion_alloc.flags = 0;
   ion_alloc.len = mi->fb_sz;
-  ion_alloc.align = sysconf(_SC_PAGESIZE);
+  ion_alloc.align = sysconf(_SC_PAGESIZE);  
+#ifdef LIBAROMA_FORCE_NEW_ION_HEAP
+  ion_alloc.heap_id_mask =
+#else
   ion_alloc.heap_mask =
+#endif
       ION_HEAP(ION_IOMMU_HEAP_ID) |
       ION_HEAP(ION_SYSTEM_CONTIG_HEAP_ID);
   if(ioctl(mi->qcom->ionfd, ION_IOC_ALLOC, &ion_alloc)){

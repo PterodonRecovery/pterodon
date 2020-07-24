@@ -86,6 +86,17 @@ byte libaroma_hid_init() {
   _libaroma_hid->touch_last_x = 0;
   _libaroma_hid->touch_last_y = 0;
   
+#ifdef LIBAROMA_TOUCHSCREEN_SWAP_XY
+  _libaroma_hid->touch_swap_xy = 1;
+#endif
+#ifdef LIBAROMA_TOUCHSCREEN_FLIP_X
+    _libaroma_hid->touch_flip_x = 1;
+#endif
+#ifdef LIBAROMA_TOUCHSCREEN_FLIP_Y
+    _libaroma_hid->touch_flip_y = 1;
+#endif
+
+  
   /* init driver */
   ALOGV("init hid driver");
   

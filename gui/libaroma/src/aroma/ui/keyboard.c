@@ -19,5 +19,7 @@
 #define __libaroma_keyboard_c__
 #include <aroma_internal.h>
 #include "ui_internal.h"
+
+// todo: add support for keyboard object
  
 #endif // __libaroma_keyboard_c__

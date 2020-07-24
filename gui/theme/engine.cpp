@@ -171,25 +171,6 @@ void Pterodon::Gui::Engine::Screenshot(void) {
     libaroma_canvas_blank(libaroma_fb()->canvas);
     libaroma_sync();
     LIBAROMA_WINDOWP win = libaroma_wm_get_active_window();
-    /*
-    if (win != NULL) {
-    for (int i=0;i<win->childn;i++){
-      libaroma_control_draw(win->childs[i], 0);
-    }
-    
-  if (win->parent != NULL) {
-  for (int i=0;i<win->parent->childn;i++){
-      libaroma_control_draw(win->parent->childs[i], 0);
-    }	
-    
-    if (win->parent->handler!=NULL){
-    if (win->parent->handler->sync!=NULL){
-      win->parent->handler->sync(win->parent,0,0,win->parent->w,win->parent->h);
-    }
-  } 
- }
-    libaroma_sync();
-    */
     libaroma_window_invalidate(win, 10);
     libaroma_window_invalidate(win->parent, 10);
     Pterodon::Gui::Statusbar::update();
@@ -293,7 +274,9 @@ void Pterodon::Gui::Engine::ShowSplash(const std::string& splash_image_name) {
   Pterodon::DeviceDriver::GetMaxDisplayBrightness(&Pterogui()->max_display_brightness);
   /* Reset the display driver, to fix touch issues on some devices */
   Pterodon::DeviceDriver::SetBrightness(0);
+  libaroma_fb_blank(1);
   Pterodon::DeviceDriver::SetBrightness(100);
+  libaroma_fb_blank(0);
   
 LIBAROMA_CANVASP splash = Pterodon::Gui::Engine::LoadImage(splash_image_name); 
   if (splash){

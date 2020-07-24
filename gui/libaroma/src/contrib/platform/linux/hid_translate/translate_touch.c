@@ -318,6 +318,8 @@ byte LINUXHIDRV_translate_touch(
     }*/
     
     LINUXHIDRV_calibrate(me, &dev->p, &cx, &cy);
+
+
     
     /* swap & flip handler */
     if (mi->touch_swap_xy) {

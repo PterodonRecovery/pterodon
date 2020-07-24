@@ -524,8 +524,12 @@ int libaroma_fb_blank(byte powerdown) {
     ALOGW("libaroma_fb_blank framebuffer uninitialized");
     return 0;
   }
-  LINUXFBDR_INTERNALP mi = (LINUXFBDR_INTERNALP) _libaroma_fb->internal;
-  return ioctl(mi->fb, FBIOBLANK, powerdown ? FB_BLANK_POWERDOWN : FB_BLANK_UNBLANK);
+#ifndef PTERO_GUI_NO_SCREEN_BLANK
+LINUXFBDR_INTERNALP mi = (LINUXFBDR_INTERNALP) _libaroma_fb->internal;
+return ioctl(mi->fb, FBIOBLANK, powerdown ? FB_BLANK_POWERDOWN : FB_BLANK_UNBLANK);
+#else
+return 0;
+#endif
 } /* End of libaroma_fb_blank */
 
 int libaroma_fb_swap_buffer(void) {

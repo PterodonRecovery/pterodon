@@ -512,7 +512,7 @@ if (value > 0) {
 }
 
 void DeviceDriver::ToggleLeds(void) {
-for (const std::string leds_rgb : {"blue", "green", "red"}) {
+for (const std::string leds_rgb : {"red", "green", "blue"}) {
 std::string led_path = "/sys/class/leds/" + leds_rgb;
 std::string full_path = led_path + "/blink";
 if (!Pterodon::Framework::PathExists(full_path))
