@@ -590,7 +590,7 @@ void DeviceDriver::FixTime(void) {
     const char *paths[] = {"/data/system/time/", "/data/time/", "/data/vendor/time/", "/persist/time/"};
     char ats_path[PATH_MAX] = "";
     DIR *d;
-    uint64_t offset = 0;
+    unsigned long offset = 0;
     struct timeval tv;
     struct dirent *dt;
 
