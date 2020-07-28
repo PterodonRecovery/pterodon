@@ -514,10 +514,7 @@ if (value > 0) {
 void DeviceDriver::ToggleLeds(void) {
 for (const std::string leds_rgb : {"charging", "red", "green", "blue"}) {
 std::string led_path = "/sys/class/leds/" + leds_rgb;
-std::string full_path = led_path + "/blink";
-if (!Pterodon::Framework::PathExists(full_path))
-     continue;
-full_path = led_path + "/brightness";
+std::string full_path = led_path + "/brightness";
 if (!Pterodon::Framework::PathExists(full_path)) continue;
 int value = 0;
 if (!read_sysfs_entry_int(full_path.c_str(), 16, &value))
