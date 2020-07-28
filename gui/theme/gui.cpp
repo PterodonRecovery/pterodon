@@ -863,7 +863,8 @@ Pterodon::Gui::Core::init_date_menu(win, buttons_menu_list, false);
   libaroma_window_anishow(parent, LIBAROMA_WINDOW_SHOW_ANIMATION_STACKOUT, 100);
   return 0;
 }
-	
+
+
 void Pterodon::Gui::Core::init_buttons_menu(LIBAROMA_WINDOWP win, LIBAROMA_CONTROLP menu_list, bool init) {
 	word menuflags =
     LIBAROMA_LISTITEM_MENU_INDENT_NOICON|
@@ -1272,7 +1273,7 @@ int Pterodon::Gui::Core::theme_dialog(LIBAROMA_WINDOWP parent) {
   int ret=libaroma_dialog_list(
     "Select accent color",
     "OK",
-    "Backk",
+    "Back",
     NULL,
     LIBAROMA_DIALOG_DIM_PARENT|LIBAROMA_DIALOG_WITH_SHADOW|
     LIBAROMA_DIALOG_ACCENT_BUTTON|LIBAROMA_DIALOG_CANCELABLE,
@@ -1577,14 +1578,15 @@ word checkflags =
 
   /* ITEMS */
   _TITLE(503,"Look and feel");  
-  _ITEM(504,"Statusbar", "window_maximize", "");
-  _ITEM(505,"Date & time", "clock", "Timezone settings");
-  _ITEM(506,"Font", "font", "Choose your preffered text font");
-//  _ITEM(507,"Accent Color", "color", "Choose your preffered accent color");
-//  _ITEM(508,"Background Color", "format_paint", "Select UI background color");  
-  _CHECK(509,"Dark mode", "check_enable_dark_mode", "theme_light_dark", "Enable dark mode through entire GUI");  
-  _CHECK(510,"Fahrenheit", "force_fahrenheit_temperature", "fahrenheit", "Use fahrenheit temperature instead of celsius");
-  
+  _ITEM(504,"Language", "language", "Change language");
+  _ITEM(505,"Statusbar", "window_maximize", "Statusbar preferences");
+  _ITEM(506,"Date & time", "clock", "Timezone settings");
+  _ITEM(507,"Font", "font", "Choose your preffered text font");
+//  _ITEM(508,"Accent Color", "color", "Choose your preffered accent color");
+//  _ITEM(509,"Background Color", "format_paint", "Select UI background color");  
+  _CHECK(510,"Dark mode", "check_enable_dark_mode", "theme_light_dark", "Enable dark mode through entire GUI");  
+  _CHECK(511,"Fahrenheit", "force_fahrenheit_temperature", "fahrenheit", "Use fahrenheit temperature instead of celsius");;
+
   /* undef menu item macro */
     #undef _DIV
     #undef _TITLE
@@ -1718,9 +1720,9 @@ LIBAROMA_CONTROLP about_recovery_list = libaroma_ctl_list(
   }
   device_info_menu_id++;
   if (Pterodon::PropertyManager::GetProperty("ro.build.ab_update", "false") == "true")
-  _ITEM(device_info_menu_id, "Partition Scheme", NULL, "AB");
+  _ITEM(device_info_menu_id, "Partition Scheme", NULL, "A/B");
   else
-  _ITEM(device_info_menu_id, "Partition Scheme", NULL, "A");
+  _ITEM(device_info_menu_id, "Partition Scheme", NULL, "A only");
   
   
   /* undef menu item macro */
@@ -1854,30 +1856,30 @@ LIBAROMA_CONTROLP about_recovery_list = libaroma_ctl_list(
        else if (msg.key == 507)
        Pterodon::Gui::Core::show_vibration_menu(Pterogui()->Window);
        } else if (pooler.id==81){
-       if (msg.key == 504) {
+       if (msg.key == 505) {
        Pterodon::Gui::Core::show_statusbar_menu(Pterogui()->Window);
        }
-       else if (msg.key == 505) {
+       else if (msg.key == 506) {
        Pterodon::Gui::Core::show_date_menu(Pterogui()->Window);
        }   
-       else if (msg.key == 506) {
+       else if (msg.key == 507) {
        Pterodon::Gui::Core::select_font_dialog(Pterogui()->Window);    
        }
-       else if (msg.key == 507) {
+       else if (msg.key == 508) {
        Pterodon::Gui::Core::theme_dialog(Pterogui()->Window);
        }
-       else if (msg.key == 508) {
+       else if (msg.key == 509) {
        Pterodon::Gui::Core::background_dialog(Pterogui()->Window);
        }
-       else if (msg.key == 509) {
+       else if (msg.key == 510) {
        Pterodon::SettingsManager::ToggleVar("check_enable_dark_mode");
        if (Pterodon::SettingsManager::GetIntVar("check_enable_dark_mode") == 0) {
        Pterogui()->dark_mode = PTEROGUI_WHITE_BACKGROUND;
        } else {
        Pterogui()->dark_mode = PTEROGUI_BLACK_BACKGROUND;	
        }
-       Pterodon::Gui::Engine::ShowDialog("<Theme changed</b>", "This settings will be applied on next boot to recovery");
-       } else if (msg.key == 510) {
+       Pterodon::Gui::Engine::ShowDialog("<b>Theme changed</b>", "This settings will be applied on next boot to recovery");
+       } else if (msg.key == 511) {
        Pterodon::SettingsManager::ToggleVar("force_fahrenheit_temperature");
        Pterodon::Gui::Engine::UpdateTimeSettings();	
        }
